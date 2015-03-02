@@ -1,15 +1,15 @@
 # Baun
 
 Baun is a modern, lightweight, extensible CMS for PHP. Inspired by my last CMS [Pico](http://picocms.org),
-Baun has been desgined from the ground up as a modern PHP application whilst retaining the same featurs that
-made Pico so popular (fast, simple, flat etc.). Baun features:
+Baun has been desgined from the ground up as a modern PHP application whilst retaining the same features that
+made Pico so popular:
 
-* Simple - Baun makes creating and maintaining a website as simple as editing text files
-* Fast - Designed with performance in mind, and no database, making Baun blazing fast
-* Flat - Baun is designed as a "flat file" CMS, meaning you can completely forget about MySQL
-* Markdown - Edit your website in your favourite text editor using simple Markdown formatting
-* Twig - Baun uses the [Twig](http://twig.sensiolabs.org) templating engine, for powerful and flexible templates
-* Open Source - Baun is completely free and open source, released under the MIT license
+* **Simple** - Baun makes creating and maintaining a website as simple as editing text files
+* **Fast** - Designed with performance in mind, and no database, making Baun blazing fast
+* **Flat** - Baun is designed as a "flat file" CMS, meaning you can completely forget about MySQL
+* **Markdown** - Edit your website in your favourite text editor using simple Markdown formatting
+* **Twig** - Baun uses the [Twig](http://twig.sensiolabs.org) templating engine, for powerful and flexible templates
+* **Open Source** - Baun is completely free and open source, released under the MIT license
 
 ## Requirements
 
@@ -34,5 +34,5 @@ features/fixes will be rejected.
 
 ## Credits
 
-Raneto was created by [Gilbert Pellegrom](http://gilbert.pellegrom.me) from
+Baun was created by [Gilbert Pellegrom](http://gilbert.pellegrom.me) from
 [Dev7studios](http://dev7studios.com). Released under the MIT license.
