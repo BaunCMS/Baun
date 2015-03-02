@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>{% block title %}
+		{% if info.Title %}
+			{{ info.Title }} -
+		{% endif %}
+		Baun
+	{% endblock %}</title>
+	{% if info.Description %}
+	<meta name="description" content="{{ info.Description }}">
+	{% endif %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="/templates/baun/bower_components/skeleton/css/normalize.css">
+	<link rel="stylesheet" href="/templates/baun/bower_components/skeleton/css/skeleton.css">
+	<link rel="stylesheet" href="/templates/baun/style.css">
+</head>
+<body>
+
+	<div class="header container">
+		<h1><a href="/">Baun</a></h1>
+	</div>
+
+	<div class="content container">
+		{% block content %}{% endblock %}
+	</div>
+
+</body>
+</html>
