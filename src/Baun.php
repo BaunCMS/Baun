@@ -37,10 +37,6 @@ class Baun {
 			die('Missing content parser');
 		}
 		$this->contentParser = new $this->config['providers']['contentParser'];
-
-		// Run
-		$this->setupRoutes();
-		$this->router->dispatch();
 	}
 
 	protected function setupRoutes()
@@ -55,7 +51,7 @@ class Baun {
 
 				$this->router->add('GET', $route, function() use ($file) {
 					$data = $this->getFileData($file);
-					return $this->template->render('content.html', $data);
+					return $this->template->render('template.html', $data);
 				});
 			}
 		}
@@ -87,6 +83,17 @@ class Baun {
 		}
 
 		return $files;
+	}
+
+	public function run()
+	{
+		$this->setupRoutes();
+
+		try {
+			$this->router->dispatch();
+		} catch(\Exception $e) {
+			$this->template->render('404.html');
+		}
 	}
 
 }
