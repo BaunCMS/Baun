@@ -39,52 +39,6 @@ class Baun {
 		$this->contentParser = new $this->config['providers']['contentParser'];
 	}
 
-	protected function setupRoutes()
-	{
-		$files = $this->getContentFiles();
-		foreach ($files as $file) {
-			$route = str_replace('content/', '', $file);
-			$route = str_replace($this->config['content_extension'], '', $route);
-
-			if ($route != '404') {
-				if ($route == 'index') $route = '/';
-
-				$this->router->add('GET', $route, function() use ($file) {
-					$data = $this->getFileData($file);
-					return $this->template->render('template.html', $data);
-				});
-			}
-		}
-	}
-
-	protected function getFileData($file_path)
-	{
-		$file_path = BASE_PATH . $file_path;
-		$file_contents = file_get_contents($file_path);
-		return $this->contentParser->parse($file_contents);
-	}
-
-	protected function getContentFiles()
-	{
-		if (!isset($this->config['content_path']) || !is_dir($this->config['content_path'])) {
-			die('Missing content path');
-		}
-		if (!isset($this->config['content_extension'])) {
-			die('Missing content extension');
-		}
-
-		$Directory = new \RecursiveDirectoryIterator($this->config['content_path']);
-		$Iterator = new \RecursiveIteratorIterator($Directory);
-		$Regex = new \RegexIterator($Iterator, '/^.+\\'. $this->config['content_extension'] .'$/i', \RecursiveRegexIterator::GET_MATCH);
-		$files = array_keys(iterator_to_array($Regex));
-
-		foreach ($files as $key => $file) {
-			$files[$key] = str_replace(BASE_PATH, '', $file);
-		}
-
-		return $files;
-	}
-
 	public function run()
 	{
 		$this->setupRoutes();
@@ -94,6 +48,126 @@ class Baun {
 		} catch(\Exception $e) {
 			$this->template->render('404.html');
 		}
+	}
+
+	protected function setupRoutes()
+	{
+		if (!isset($this->config['content_path']) || !is_dir($this->config['content_path'])) {
+			die('Missing content path');
+		}
+		if (!isset($this->config['content_extension'])) {
+			die('Missing content extension');
+		}
+
+		$files = $this->getFiles($this->config['content_path'], $this->config['content_extension']);
+		$routes = $this->filesToRoutes($files);
+		$navigation = $this->filesToNav($files);
+		foreach ($routes as $route) {
+			$this->router->add('GET', $route['route'], function() use ($navigation, $route) {
+				$data = $this->getFileData($route['path']);
+				$data['navigation'] = $navigation;
+				return $this->template->render('template.html', $data);
+			});
+		}
+	}
+
+	protected function getFiles($dir, $extension, $top = true)
+	{
+		$result = [];
+		$dirs = [];
+		$files = [];
+		$sdir = scandir($dir);
+
+		foreach ($sdir as $key => $value) {
+			if (!in_array($value,array('.','..'))) {
+				$ext = pathinfo($value, PATHINFO_EXTENSION);
+				if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
+					$dirs[$value] = $this->getFiles($dir . DIRECTORY_SEPARATOR . $value, $extension, false);
+				} elseif('.' . $ext == $extension) {
+					if (preg_match('/^\d+\-/', $value)) {
+						list($index, $path) = explode('-', $value, 2);
+						$files[$index] = [
+							'nice' => $path,
+							'raw' => $value
+						];
+					} else {
+						$files[] = [
+							'nice' => $value,
+							'raw' => $value
+						];
+					}
+				}
+			}
+		}
+
+		ksort($dirs);
+		ksort($files);
+		if ($top) {
+			$result = array_merge($files, $dirs);
+		} else {
+			$result = array_merge($dirs, $files);
+		}
+
+		return $result;
+	}
+
+	protected function filesToRoutes($files, $prefix = '')
+	{
+		$result = [];
+
+		foreach ($files as $key => $value) {
+			if (!is_int($key)) {
+				$result = array_merge($result, $this->filesToRoutes($value, $prefix . $key . '/'));
+			} else {
+				$route = str_replace($this->config['content_extension'], '', $value['nice']);
+				if ($route == 'index') {
+					$route = '/';
+				}
+
+				$result[] = [
+					'route' => $prefix . $route,
+					'path' => $prefix . $value['raw']
+				];
+			}
+		}
+
+		return $result;
+	}
+
+	protected function filesToNav($files, $prefix = '')
+	{
+		$result = [];
+
+		foreach ($files as $key => $value) {
+			if (!is_int($key)) {
+				$result[] = $this->filesToNav($value, $prefix . $key . '/');
+			} else {
+				$route = str_replace($this->config['content_extension'], '', $value['nice']);
+				if ($route == 'index') {
+					$route = '/';
+				}
+
+				$data = $this->getFileData($prefix . $value['raw']);
+				$title = isset($data['info']['Title']) ? $data['info']['Title'] : '';
+				if (!$title) {
+					$title = ucwords(str_replace(['-', '_'], ' ', basename($route)));
+				}
+
+				$result[] = [
+					'title' => $title,
+					'url' => $prefix . $route
+				];
+			}
+		}
+
+		return $result;
+	}
+
+	protected function getFileData($route_path)
+	{
+		$file_path = $this->config['content_path'] . $route_path;
+		$file_contents = file_get_contents($file_path);
+		return $this->contentParser->parse($file_contents);
 	}
 
 }
