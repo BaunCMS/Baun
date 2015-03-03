@@ -60,12 +60,14 @@ class Baun {
 		}
 
 		$files = $this->getFiles($this->config['content_path'], $this->config['content_extension']);
-		$routes = $this->filesToRoutes($files);
+
 		$navigation = $this->filesToNav($files);
+		$this->template->custom('baun_nav', $navigation);
+
+		$routes = $this->filesToRoutes($files);
 		foreach ($routes as $route) {
-			$this->router->add('GET', $route['route'], function() use ($navigation, $route) {
+			$this->router->add('GET', $route['route'], function() use ($route) {
 				$data = $this->getFileData($route['path']);
-				$data['navigation'] = $navigation;
 				return $this->template->render('template.html', $data);
 			});
 		}

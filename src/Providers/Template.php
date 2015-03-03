@@ -5,6 +5,7 @@ use Baun\Interfaces\Template as TemplateInterface;
 class Template implements TemplateInterface {
 
 	protected $template;
+	protected $customData;
 
 	public function __construct($templates_path)
 	{
@@ -15,6 +16,43 @@ class Template implements TemplateInterface {
 	public function render($template, $data = [])
 	{
 		echo $this->template->render($template, $data);
+	}
+
+	public function custom($name, $data)
+	{
+		$this->customData[$name] = $data;
+
+		if (method_exists($this, 'custom_' . $name)) {
+			$function = new \Twig_SimpleFunction($name, [$this, 'custom_' . $name], ['is_safe' => ['html']]);
+			$this->template->addFunction($function);
+		}
+	}
+
+	public function custom_baun_nav()
+	{
+		$data = $this->customData['baun_nav'];
+		$html = $this->navToHTML($data);
+		echo $html;
+	}
+
+	private function navToHTML($array, $top = true)
+	{
+		if ($top) {
+			$html = '<ul class="baun-nav">';
+		} else {
+			$html = '<ul class="baun-nav-children">';
+		}
+
+		foreach ($array as $key => $value) {
+			if (!isset($value['url'])) {
+				$html .= $this->navToHTML($value, false);
+			} else {
+				$html .= '<li class="baun-nav-item"><a href="' . ($value['url'] == '/' ? $value['url'] : '/' . $value['url']) . '">' . $value['title'] . '</a></li>';
+			}
+		}
+
+		$html .= '</ul>';
+		return $html;
 	}
 
 }

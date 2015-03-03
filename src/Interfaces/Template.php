@@ -6,4 +6,6 @@ interface Template {
 
 	public function render($template, $data = []);
 
+	public function custom($name, $data);
+
 }
