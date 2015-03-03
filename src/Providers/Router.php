@@ -24,4 +24,9 @@ class Router implements RouterInterface {
 		echo $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 	}
 
+	public function currentUri()
+	{
+		return ltrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+	}
+
 }

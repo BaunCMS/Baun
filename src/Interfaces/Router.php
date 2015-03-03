@@ -6,4 +6,6 @@ interface Router {
 
 	public function dispatch();
 
+	public function currentUri();
+
 }

@@ -61,7 +61,7 @@ class Baun {
 
 		$files = $this->getFiles($this->config['content_path'], $this->config['content_extension']);
 
-		$navigation = $this->filesToNav($files);
+		$navigation = $this->filesToNav($files, $this->router->currentUri());
 		$this->template->custom('baun_nav', $navigation);
 
 		$routes = $this->filesToRoutes($files);
@@ -113,13 +113,18 @@ class Baun {
 		return $result;
 	}
 
-	protected function filesToRoutes($files, $prefix = '')
+	protected function filesToRoutes($files, $route_prefix = '', $path_prefix = '')
 	{
 		$result = [];
 
 		foreach ($files as $key => $value) {
 			if (!is_int($key)) {
-				$result = array_merge($result, $this->filesToRoutes($value, $prefix . $key . '/'));
+				if (preg_match('/^\d+\-/', $key)) {
+					list($index, $path) = explode('-', $key, 2);
+					$result = array_merge($result, $this->filesToRoutes($value, $route_prefix . $path . '/', $path_prefix . $key . '/'));
+				} else {
+					$result = array_merge($result, $this->filesToRoutes($value, $route_prefix . $key . '/', $path_prefix . $key . '/'));
+				}
 			} else {
 				$route = str_replace($this->config['content_extension'], '', $value['nice']);
 				if ($route == 'index') {
@@ -127,8 +132,8 @@ class Baun {
 				}
 
 				$result[] = [
-					'route' => $prefix . $route,
-					'path' => $prefix . $value['raw']
+					'route' => $route_prefix . $route,
+					'path' => $path_prefix . $value['raw']
 				];
 			}
 		}
@@ -136,29 +141,44 @@ class Baun {
 		return $result;
 	}
 
-	protected function filesToNav($files, $prefix = '')
+	protected function filesToNav($files, $currentUri, $route_prefix = '', $path_prefix = '')
 	{
 		$result = [];
 
 		foreach ($files as $key => $value) {
 			if (!is_int($key)) {
-				$result[] = $this->filesToNav($value, $prefix . $key . '/');
+				if (preg_match('/^\d+\-/', $key)) {
+					list($index, $path) = explode('-', $key, 2);
+					$result[$key] = $this->filesToNav($value, $currentUri, $route_prefix . $path . '/', $path_prefix . $key . '/');
+				} else {
+					$result[$key] = $this->filesToNav($value, $currentUri, $route_prefix . $key . '/', $path_prefix . $key . '/');
+				}
 			} else {
 				$route = str_replace($this->config['content_extension'], '', $value['nice']);
 				if ($route == 'index') {
 					$route = '/';
 				}
+				if (!$currentUri) {
+					$currentUri = '/';
+				}
 
-				$data = $this->getFileData($prefix . $value['raw']);
+				$data = $this->getFileData($path_prefix . $value['raw']);
 				$title = isset($data['info']['Title']) ? $data['info']['Title'] : '';
 				if (!$title) {
 					$title = ucwords(str_replace(['-', '_'], ' ', basename($route)));
 				}
+				$active = false;
+				if ($route_prefix . $route == $currentUri) {
+					$active = true;
+				}
 
-				$result[] = [
-					'title' => $title,
-					'url' => $prefix . $route
-				];
+				if (!isset($data['info']['exclude_from_nav']) || !$data['info']['exclude_from_nav']) {
+					$result[] = [
+						'title'  => $title,
+						'url'    => $route_prefix . $route,
+						'active' => $active
+					];
+				}
 			}
 		}
 

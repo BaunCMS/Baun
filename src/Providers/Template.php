@@ -40,14 +40,21 @@ class Template implements TemplateInterface {
 		if ($top) {
 			$html = '<ul class="baun-nav">';
 		} else {
-			$html = '<ul class="baun-nav-children">';
+			$html = '<ul>';
 		}
 
 		foreach ($array as $key => $value) {
-			if (!isset($value['url'])) {
-				$html .= $this->navToHTML($value, false);
+			if (!is_int($key)) {
+				if (preg_match('/^\d+\-/', $key)) {
+					list($index, $path) = explode('-', $key, 2);
+					$key = $path;
+				}
+				$title = ucwords(str_replace(['-', '_'], ' ', basename($key)));
+				$html .= '<li class="baun-nav-item baun-nav-has-children">' . $title . $this->navToHTML($value, false) . '</li>';
 			} else {
-				$html .= '<li class="baun-nav-item"><a href="' . ($value['url'] == '/' ? $value['url'] : '/' . $value['url']) . '">' . $value['title'] . '</a></li>';
+				$html .= '<li class="baun-nav-item item-' . $key . ($value['active'] ? ' baun-nav-active' : '') . '">';
+				$html .= '<a href="' . ($value['url'] == '/' ? $value['url'] : '/' . $value['url']) . '">' . $value['title'] . '</a>';
+				$html .= '</li>';
 			}
 		}
 
