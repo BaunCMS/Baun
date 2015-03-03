@@ -1,5 +1,6 @@
-Title: A modern, lightweight, extensible CMS for PHP
+Title: Home
 Description: Baun is a modern, lightweight, extensible CMS for PHP
+exclude_from_nav: true
 ----
 Baun is a modern, lightweight, extensible CMS for PHP. Inspired by my last CMS [Pico](http://picocms.org),
 Baun has been desgined from the ground up as a modern PHP application whilst retaining the same features that
@@ -12,18 +13,7 @@ made Pico so popular:
 * **Twig** - Baun uses the [Twig](http://twig.sensiolabs.org) templating engine, for powerful and flexible templates
 * **Open Source** - Baun is completely free and open source, released under the MIT license
 
-## Requirements
-
-* PHP 5.4
-
-## Install
-
-1. [Download the latest version](https://github.com/gilbitron/Baun/releases) of Baun
-2. Upload the files to your server (via FTP or some other deployment)
-3. Make sure your virtual host points to the `/public` folder of Baun
-4. That's it!
-
-## Contribute
+### Contribute
 
 Want to contribute to Baun? That's great. Here is where you should go:
 
@@ -33,7 +23,7 @@ Want to contribute to Baun? That's great. Here is where you should go:
 Note that pull requests should be limited to one feature/fix per request. Pull requests with multiple
 features/fixes will be rejected.
 
-## Credits
+### Credits
 
 Baun was created by [Gilbert Pellegrom](http://gilbert.pellegrom.me) from
 [Dev7studios](http://dev7studios.com). Released under the MIT license.
