@@ -22,11 +22,17 @@
 
 	<div class="header container">
 		<h1><a href="/">Baun</a></h1>
-		{{ baun_nav() }}
 	</div>
 
 	<div class="content container">
-		{% block content %}{% endblock %}
+		<div class="row">
+			<div class="three columns">
+				{{ baun_nav() }}
+			</div>
+			<div class="nine columns">
+				{% block content %}{% endblock %}
+			</div>
+		</div>
 	</div>
 
 </body>
