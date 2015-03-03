@@ -11,17 +11,6 @@ made Pico so popular:
 * **Twig** - Baun uses the [Twig](http://twig.sensiolabs.org) templating engine, for powerful and flexible templates
 * **Open Source** - Baun is completely free and open source, released under the MIT license
 
-## Requirements
-
-* PHP 5.4
-
-## Install
-
-1. [Download the latest version](https://github.com/gilbitron/Baun/releases) of Baun
-2. Upload the files to your server (via FTP or some other deployment)
-3. Make sure your virtual host points to the `/public` folder of Baun
-4. That's it!
-
 ## Contribute
 
 Want to contribute to Baun? That's great. Here is where you should go:
