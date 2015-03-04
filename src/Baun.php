@@ -69,8 +69,8 @@ class Baun {
 			$this->router->add('GET', $route['route'], function() use ($route) {
 				$data = $this->getFileData($route['path']);
 				$template = 'page';
-				if (isset($data['info']['theme']) && $data['info']['theme']) {
-					$template = $data['info']['theme'];
+				if (isset($data['info']['template']) && $data['info']['template']) {
+					$template = $data['info']['template'];
 				}
 
 				return $this->theme->render($template, $data);
@@ -168,7 +168,7 @@ class Baun {
 				}
 
 				$data = $this->getFileData($path_prefix . $value['raw']);
-				$title = isset($data['info']['Title']) ? $data['info']['Title'] : '';
+				$title = isset($data['info']['title']) ? $data['info']['title'] : '';
 				if (!$title) {
 					$title = ucwords(str_replace(['-', '_'], ' ', basename($route)));
 				}
