@@ -1,21 +1,21 @@
 <?php namespace Baun\Providers;
 
-use Baun\Interfaces\Template as TemplateInterface;
+use Baun\Interfaces\Theme as ThemeInterface;
 
-class Template implements TemplateInterface {
+class Theme implements ThemeInterface {
 
-	protected $template;
+	protected $theme;
 	protected $customData;
 
-	public function __construct($templates_path)
+	public function __construct($themes_path)
 	{
-		$loader = new \Twig_Loader_Filesystem($templates_path);
-		$this->template = new \Twig_Environment($loader);
+		$loader = new \Twig_Loader_Filesystem($themes_path);
+		$this->theme = new \Twig_Environment($loader);
 	}
 
 	public function render($template, $data = [])
 	{
-		echo $this->template->render($template . '.html', $data);
+		echo $this->theme->render($template . '.html', $data);
 	}
 
 	public function custom($name, $data)
@@ -24,7 +24,7 @@ class Template implements TemplateInterface {
 
 		if (method_exists($this, 'custom_' . $name)) {
 			$function = new \Twig_SimpleFunction($name, [$this, 'custom_' . $name], ['is_safe' => ['html']]);
-			$this->template->addFunction($function);
+			$this->theme->addFunction($function);
 		}
 	}
 

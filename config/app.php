@@ -7,17 +7,17 @@ return [
 	// The file extension to use for content files
 	'content_extension' => '.md',
 
-	// Path to the templates folder
-	'templates_path' => BASE_PATH . 'public/templates/',
-	// The currently active template
-	'template' => 'baun',
+	// Path to the themes folder
+	'themes_path' => BASE_PATH . 'public/themes/',
+	// The currently active theme
+	'theme' => 'baun',
 
 	// Map the providers. Don't touch this
 	// unless you know what you are doing
 	'providers' => [
 		'contentParser' => 'Baun\Providers\ContentParser',
 		'router'        => 'Baun\Providers\Router',
-		'template'      => 'Baun\Providers\Template'
+		'theme'         => 'Baun\Providers\Theme'
 	]
 
 ];

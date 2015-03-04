@@ -4,7 +4,7 @@ class Baun {
 
 	protected $config;
 	protected $router;
-	protected $template;
+	protected $theme;
 	protected $contentParser;
 
 	public function __construct()
@@ -20,17 +20,17 @@ class Baun {
 		}
 		$this->router = new $this->config['providers']['router'];
 
-		// Template
-		if (!isset($this->config['providers']['template'])){
-			die('Missing template provider');
+		// Theme
+		if (!isset($this->config['providers']['theme'])){
+			die('Missing theme provider');
 		}
-		if (!isset($this->config['templates_path'])) {
-			die('Missing templates path');
+		if (!isset($this->config['themes_path'])) {
+			die('Missing themes path');
 		}
-		if (!isset($this->config['template']) || !is_dir($this->config['templates_path'] . $this->config['template'])) {
-			die('Missing template');
+		if (!isset($this->config['theme']) || !is_dir($this->config['themes_path'] . $this->config['theme'])) {
+			die('Missing theme');
 		}
-		$this->template = new $this->config['providers']['template']($this->config['templates_path'] . $this->config['template']);
+		$this->theme = new $this->config['providers']['theme']($this->config['themes_path'] . $this->config['theme']);
 
 		// Content Parser
 		if (!isset($this->config['providers']['contentParser'])){
@@ -46,7 +46,7 @@ class Baun {
 		try {
 			$this->router->dispatch();
 		} catch(\Exception $e) {
-			$this->template->render('404');
+			$this->theme->render('404');
 		}
 	}
 
@@ -62,18 +62,18 @@ class Baun {
 		$files = $this->getFiles($this->config['content_path'], $this->config['content_extension']);
 
 		$navigation = $this->filesToNav($files, $this->router->currentUri());
-		$this->template->custom('baun_nav', $navigation);
+		$this->theme->custom('baun_nav', $navigation);
 
 		$routes = $this->filesToRoutes($files);
 		foreach ($routes as $route) {
 			$this->router->add('GET', $route['route'], function() use ($route) {
 				$data = $this->getFileData($route['path']);
 				$template = 'page';
-				if (isset($data['info']['template']) && $data['info']['template']) {
-					$template = $data['info']['template'];
+				if (isset($data['info']['theme']) && $data['info']['theme']) {
+					$template = $data['info']['theme'];
 				}
 
-				return $this->template->render($template, $data);
+				return $this->theme->render($template, $data);
 			});
 		}
 	}
