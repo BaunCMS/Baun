@@ -1,5 +1,5 @@
-Title: Home
-Description: Baun is a modern, lightweight, extensible CMS for PHP
+title: Home
+description: Baun is a modern, lightweight, extensible CMS for PHP
 exclude_from_nav: true
 ----
 Baun is a modern, lightweight, extensible CMS for PHP. Inspired by my last CMS [Pico](http://picocms.org),

@@ -1,4 +1,4 @@
-Title: Configuration
+title: Configuration
 ----
 # Configuring Baun
 

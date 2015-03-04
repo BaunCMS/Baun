@@ -1,4 +1,4 @@
-Title: Installing
+title: Installing
 ----
 # Installing Baun
 

@@ -1,4 +1,4 @@
-Title: Updating
+title: Updating
 ----
 # Updating Baun
 
