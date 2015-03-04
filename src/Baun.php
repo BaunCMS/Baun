@@ -46,7 +46,7 @@ class Baun {
 		try {
 			$this->router->dispatch();
 		} catch(\Exception $e) {
-			$this->template->render('404.html');
+			$this->template->render('404');
 		}
 	}
 
@@ -68,7 +68,12 @@ class Baun {
 		foreach ($routes as $route) {
 			$this->router->add('GET', $route['route'], function() use ($route) {
 				$data = $this->getFileData($route['path']);
-				return $this->template->render('template.html', $data);
+				$template = 'page';
+				if (isset($data['info']['template']) && $data['info']['template']) {
+					$template = $data['info']['template'];
+				}
+
+				return $this->template->render($template, $data);
 			});
 		}
 	}

@@ -15,7 +15,7 @@ class Template implements TemplateInterface {
 
 	public function render($template, $data = [])
 	{
-		echo $this->template->render($template, $data);
+		echo $this->template->render($template . '.html', $data);
 	}
 
 	public function custom($name, $data)
