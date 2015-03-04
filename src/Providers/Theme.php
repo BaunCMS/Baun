@@ -15,7 +15,7 @@ class Theme implements ThemeInterface {
 
 	public function render($template, $data = [])
 	{
-		echo $this->theme->render($template . '.html', $data);
+		return $this->theme->render($template . '.html', $data);
 	}
 
 	public function custom($name, $data)
