@@ -2,7 +2,7 @@ title: Home
 description: Baun is a modern, lightweight, extensible CMS for PHP
 exclude_from_nav: true
 ----
-Baun is a modern, lightweight, extensible CMS for PHP. Inspired by my last CMS [Pico](http://picocms.org),
+[Baun](http://bauncms.com) is a modern, lightweight, extensible CMS for PHP. Inspired by my last CMS [Pico](http://picocms.org),
 Baun has been desgined from the ground up as a modern PHP application whilst retaining the same features that
 made Pico so popular:
 
