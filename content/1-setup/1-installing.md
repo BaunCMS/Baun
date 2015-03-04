@@ -14,7 +14,7 @@ need to make sure you have SSH access to your server and Composer installed on y
 
 ## Download & Install Baun
 
-1. [Download the latest version](https://github.com/gilbitron/Baun/releases) of Baun
+1. [Download the latest version](https://github.com/BaunCMS/Baun/releases) of Baun
 2. Upload the files to your server (normally using FTP or some other deployment method)
 3. Login to your server using SSH
 4. Navigate to the installation location of Baun and run `composer install`

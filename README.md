@@ -15,8 +15,8 @@ made Pico so popular:
 
 Want to contribute to Baun? That's great. Here is where you should go:
 
-* [Submit a bug report or feature request](https://github.com/gilbitron/Baun/issues)
-* [Submit a pull request](https://github.com/gilbitron/Baun/pulls)
+* [Submit a bug report or feature request](https://github.com/BaunCMS/Baun/issues)
+* [Submit a pull request](https://github.com/BaunCMS/Baun/pulls)
 
 Note that pull requests should be limited to one feature/fix per request. Pull requests with multiple
 features/fixes will be rejected.

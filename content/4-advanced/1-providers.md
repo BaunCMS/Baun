@@ -9,12 +9,12 @@ your own custom providers and swap them out via the `providers` setting in `conf
 
 Every provider implements an interface. This is important to maintian proper functionality within Baun.
 Every provider must implement the minimum methods defined in each interface. See the
-[default Interfaces](https://github.com/gilbitron/Baun/tree/master/src/Interfaces) for more info.
+[default Interfaces](https://github.com/BaunCMS/Framework/tree/master/src/Interfaces) for more info.
 
 ## Providers
 
 A good place to start when creating a custom provider is to have a look at the
-[default Providers](https://github.com/gilbitron/Baun/tree/master/src/Providers).
+[default Providers](https://github.com/BaunCMS/Framework/tree/master/src/Providers).
 
 As an example let's imagine you wanted to change the template engine from Twig to something else. You would
 achieve this by creating your own Template Provider. It might look something like:
