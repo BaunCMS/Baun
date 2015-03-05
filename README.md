@@ -11,6 +11,15 @@ made Pico so popular:
 * **Twig** - Baun uses the [Twig](http://twig.sensiolabs.org) templating engine, for powerful and flexible templates
 * **Open Source** - Baun is completely free and open source, released under the MIT license
 
+## Documentation
+
+Documentation for Baun can be found on the [Baun website](http://bauncms.com).
+
+## Framework
+
+The Framework for Baun is kept in a separate repo. Check out the [Framework](https://github.com/BaunCMS/Framework) if
+you want to contribute to the core.
+
 ## Contribute
 
 Want to contribute to Baun? That's great. Here is where you should go:
