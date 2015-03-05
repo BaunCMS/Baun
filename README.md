@@ -8,7 +8,7 @@ made Pico so popular:
 * **Fast** - Designed with performance in mind, and no database, making Baun blazing fast
 * **Flat** - Baun is designed as a "flat file" CMS, meaning you can completely forget about MySQL
 * **Markdown** - Edit your website in your favourite text editor using simple Markdown formatting
-* **Twig** - Baun uses the [Twig](http://twig.sensiolabs.org) templating engine, for powerful and flexible templates
+* **Twig** - Baun uses the Twig templating engine, for powerful and flexible templates
 * **Open Source** - Baun is completely free and open source, released under the MIT license
 
 ## Documentation

@@ -5,19 +5,3 @@ table { width: 100%; }
 	margin-bottom: 40px;
 }
 .content { margin-bottom: 100px; }
-
-.baun-nav {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-.baun-nav > li {
-	font-weight: bold;
-}
-.baun-nav ul {
-	list-style: none;
-	padding: 0;
-	margin: 10px 0 2em;
-	font-weight: normal;
-}
-.baun-nav-active a { color: #222; }
