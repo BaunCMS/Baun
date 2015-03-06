@@ -29,6 +29,7 @@ return [
 	// unless you know what you are doing
 	'providers' => [
 		'contentParser' => 'Baun\Providers\ContentParser',
+		'events'        => 'Baun\Providers\Events',
 		'router'        => 'Baun\Providers\Router',
 		'theme'         => 'Baun\Providers\Theme'
 	]
