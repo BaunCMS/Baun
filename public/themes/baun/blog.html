@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	{% for post in posts %}
+		<div class="post">
+			<h2><a href="/{{ post.route }}">{{ post.title }}</a></h2>
+			<div class="meta">
+				<p>{{ post.published }}</p>
+			</div>
+			{% if post.excerpt %}
+				<div class="excerpt">
+					<p>
+						{{ post.excerpt }}<br>
+						<a href="/{{ post.route }}">Continue reading &rarr;</a>
+					</p>
+				</div>
+			{% endif %}
+		</div>
+	{% endfor %}
+
+	{% if pagination.total_pages > 1 %}
+		<div class="pagination">
+			{% if pagination.current_page > 1 %}
+				<a href="{{ pagination.base_url }}?page={{ pagination.current_page - 1 }}" class="prev">&lt; Prev</a>
+			{% endif %}
+			{% for i in 1..pagination.total_pages %}
+				{% if i == pagination.current_page %}
+					<span class="current-page">{{ i }}</span>
+				{% else %}
+					<a href="{{ pagination.base_url }}?page={{ i }}">{{ i }}</a>
+				{% endif %}
+			{% endfor %}
+			{% if pagination.current_page < pagination.total_pages %}
+				<a href="{{ pagination.base_url }}?page={{ pagination.current_page + 1 }}" class="next">Next &gt;</a>
+			{% endif %}
+		</div>
+	{% endif %}
+{% endblock %}

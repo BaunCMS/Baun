@@ -25,7 +25,14 @@
 	</div>
 
 	<div class="content container">
-		{% block content %}{% endblock %}
+		<div class="row">
+			<div class="three columns">
+				{{ baun_nav() }}
+			</div>
+			<div class="nine columns">
+				{% block content %}{% endblock %}
+			</div>
+		</div>
 	</div>
 
 </body>

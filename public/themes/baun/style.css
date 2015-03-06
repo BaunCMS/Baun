@@ -5,3 +5,9 @@ table { width: 100%; }
 	margin-bottom: 40px;
 }
 .content { margin-bottom: 100px; }
+
+.baun-nav {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}

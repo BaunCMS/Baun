@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<h1>{{ info.title }}</h1>
+	<p class="meta">{{ published }}</p>
+	{{ content|raw }}
+{% endblock %}
