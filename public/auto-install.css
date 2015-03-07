@@ -1,0 +1,16 @@
+body {
+	font: 14px/1.6 Consolas, monaco, monospace;
+	background: #111;
+	color: #00cd00;
+	padding: 30px;
+}
+ul {
+	list-style: none;
+	padding-left: 20px;
+	margin: 1em 0;
+}
+.error { color: #cd0000; }
+a,
+a:visited,
+a:hover,
+a:active { color: #1e90ff; }
