@@ -3,7 +3,7 @@
 {% block content %}
 	{% for post in posts %}
 		<div class="post">
-			<h2><a href="/{{ post.route }}">{{ post.title }}</a></h2>
+			<h2><a href="{{ base_url }}/{{ post.route }}">{{ post.title }}</a></h2>
 			<div class="meta">
 				<p>{{ post.published }}</p>
 			</div>
@@ -11,7 +11,7 @@
 				<div class="excerpt">
 					<p>
 						{{ post.excerpt }}<br>
-						<a href="/{{ post.route }}">Continue reading &rarr;</a>
+						<a href="{{ base_url }}/{{ post.route }}">Continue reading &rarr;</a>
 					</p>
 				</div>
 			{% endif %}
