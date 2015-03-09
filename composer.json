@@ -9,6 +9,7 @@
         }
     ],
     "require": {
-        "bauncms/framework": "~1.0"
+        "bauncms/framework": "dev-master",
+        "bauncms/baun-blog-rss": "dev-master"
     }
 }
