@@ -9,6 +9,6 @@
         }
     ],
     "require": {
-        "bauncms/framework": "~1.0"
+        "bauncms/framework": "dev-master"
     }
 }
