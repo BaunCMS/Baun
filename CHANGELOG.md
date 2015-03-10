@@ -1,5 +1,9 @@
 # Baun Changelog
 
+## v1.3.0 - 10th March 2015
+
+* [New] Added CLI and `publish:config` and `publish:assets` commands
+
 ## v1.2.0 - 9th March 2015
 
 * [New] Added auto-installer
