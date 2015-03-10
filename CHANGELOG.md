@@ -5,7 +5,7 @@
 * [New] Added auto-installer
 * [New] Added events
 * [New] Added Blog RSS plugin
-* [New] Added {{ base_url }} template variable
+* [New] Added `{{ base_url }}` template variable
 * [Changed] Split up config files
 * [Fixed] Small bug fixes
 

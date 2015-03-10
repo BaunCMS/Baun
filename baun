@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php
+define('BASE_PATH', __DIR__ . '/');
+
+if (file_exists(BASE_PATH . 'vendor/autoload.php')) {
+	require BASE_PATH . 'vendor/autoload.php';
+} else {
+	die('Error: Missing vendor/autoload.php. Run composer install.' . "\n");
+}
+
+use Symfony\Component\Console\Application;
+use Baun\Commands\PublishConfig;
+use Baun\Commands\PublishAssets;
+
+$app = new Application();
+$app->add(new PublishConfig);
+$app->add(new PublishAssets);
+$app->setDefaultCommand('list');
+$app->run();
