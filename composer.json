@@ -1,13 +1,9 @@
 {
     "name": "bauncms/baun",
     "description": "A modern, lightweight, extensible CMS for PHP",
+    "keywords": ["cms", "baun"],
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Gilbert Pellegrom",
-            "email": "gilbert@pellegrom.me"
-        }
-    ],
+    "type": "project",
     "require": {
         "bauncms/framework": "dev-master",
         "bauncms/baun-blog-rss": "dev-master"
