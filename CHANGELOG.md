@@ -1,5 +1,9 @@
 # Baun Changelog
 
+## v1.3.1 - 13th March 2015
+
+* [New] Added `/cache` folder
+
 ## v1.3.0 - 10th March 2015
 
 * [New] Added CLI and `publish:config` and `publish:assets` commands
