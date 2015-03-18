@@ -20,6 +20,10 @@ Documentation for Baun can be found on the [Baun website](http://bauncms.com).
 The Framework for Baun is kept in a separate repo. Check out the [Framework](https://github.com/BaunCMS/Framework) if
 you want to contribute to the core.
 
+## Demo
+
+The [bauncms.com](http://bauncms.com) site is built using Baun.
+
 ## Contribute
 
 Want to contribute to Baun? That's great. Here is where you should go:
