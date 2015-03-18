@@ -1,5 +1,12 @@
 # Baun Changelog
 
+## v1.3.2 - 18th March 2015
+
+* [New] Added `{{ theme_url }}` template variable
+* [Changed] Allow access to `posts` in pages
+* [Fixed] Added 404 header
+* [Fixed] "Missing events provider" Windows bug
+
 ## v1.3.1 - 13th March 2015
 
 * [New] Added `/cache` folder
