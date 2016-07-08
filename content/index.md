@@ -33,6 +33,5 @@ features/fixes will be rejected.
 
 ## Credits
 
-Baun was created by [Gilbert Pellegrom](http://gilbert.pellegrom.me) from
-[Dev7studios](http://dev7studios.com). Released under the MIT license.
+Baun was originally created by Gilbert Pellegrom and is currently maintained by [Mark Southard](http://marksouthard.co). Released under the MIT license.
 
