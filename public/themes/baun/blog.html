@@ -2,11 +2,11 @@
 
 {% block content %}
 	{% for post in posts %}
-		<div class="post">
-			<h2><a href="{{ base_url }}/{{ post.route }}">{{ post.title }}</a></h2>
-			<div class="meta">
-				<p>{{ post.published }}</p>
-			</div>
+		<article class="post">
+			<header>
+				<h1><a href="{{ base_url }}/{{ post.route }}">{{ post.title }}</a></h1>
+				<p class="meta">{{ post.published }}</p>
+			</header>
 			{% if post.excerpt %}
 				<div class="excerpt">
 					<p>
@@ -15,7 +15,7 @@
 					</p>
 				</div>
 			{% endif %}
-		</div>
+		</article>
 	{% endfor %}
 
 	{% if pagination.total_pages > 1 %}

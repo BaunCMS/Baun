@@ -20,18 +20,20 @@
 </head>
 <body>
 
-	<div class="header container">
-		<h1><a href="{{ base_url }}">Baun</a></h1>
-	</div>
-
-	<div class="content container">
-		<div class="row">
-			<div class="three columns">
+	<div class="sidebar">
+		<header class="site-header">
+			<h1 class="logo"><a href="{{ base_url }}">Baun</a></h1>
+			<nav>
 				{{ baun_nav() }}
-			</div>
-			<div class="nine columns">
-				{% block content %}{% endblock %}
-			</div>
+			</nav>
+		</header>
+		<footer>
+			&copy; {{ data|date('Y') }}
+		</footer>
+	</div>
+	<div class="main">
+		<div class="content">
+			{% block content %}{% endblock %}
 		</div>
 	</div>
 
