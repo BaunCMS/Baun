@@ -11,5 +11,7 @@ return [
 	'excerpt_words' => 30,
 	// The date format
 	'date_format' => 'jS F Y',
+    // Show date in URL
+    'date_in_url' => false,
 
 ];
